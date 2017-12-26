@@ -10,6 +10,7 @@ import UIKit
 
 import RxSwift
 
+// 视图控制器基类, 对视UIViewController的封装
 class BaseViewController: UIViewController {
 
   // MARK: Initializing
@@ -25,6 +26,7 @@ class BaseViewController: UIViewController {
 
   // MARK: Rx
 
+  //TODO: 研究在基类控制器中创建bag的目的及好处
   var disposeBag = DisposeBag()
 
 

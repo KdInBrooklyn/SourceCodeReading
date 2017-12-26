@@ -22,6 +22,7 @@ extension AlertActionType {
   }
 }
 
+// MARK: AlertServiceType
 protocol AlertServiceType: class {
   func show<Action: AlertActionType>(
     title: String?,
@@ -33,6 +34,7 @@ protocol AlertServiceType: class {
 
 final class AlertService: BaseService, AlertServiceType {
 
+  //实现AlertServiceType协议的方法
   func show<Action: AlertActionType>(
     title: String?,
     message: String?,

@@ -20,7 +20,7 @@ enum TaskEvent {
 protocol TaskServiceType {
   var event: PublishSubject<TaskEvent> { get }
   func fetchTasks() -> Observable<[Task]>
-
+/**@discardableResult: 用于取消警告. 如果没有使用方法的返回值, 是会出现is unused这样的警告, 加了这个关键字之后就不会出现*/
   @discardableResult
   func saveTasks(_ tasks: [Task]) -> Observable<Void>
 

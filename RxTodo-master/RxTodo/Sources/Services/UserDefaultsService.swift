@@ -17,6 +17,8 @@ protocol UserDefaultsServiceType {
   func set<T>(value: T?, forKey key: UserDefaultsKey<T>)
 }
 
+// MARK: 使用UserDefaus进行存储
+// UserDefaultsService是对UserDefaults的封装
 final class UserDefaultsService: BaseService, UserDefaultsServiceType {
 
   private var defaults: UserDefaults {
