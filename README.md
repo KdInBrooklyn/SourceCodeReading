@@ -5,3 +5,5 @@
 //RxToDo(使用Rx编写的ToDo项目), 源码网址: https://github.com/devxoul/RxTodo
 
 //Alamofire, 源码网址: https://github.com/Alamofire/Alamofire.git
+
+//CollectionKit, 源码网址: https://github.com/SoySauceLab/CollectionKit
