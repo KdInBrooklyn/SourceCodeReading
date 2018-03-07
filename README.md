@@ -7,3 +7,9 @@
 //Alamofire, 源码网址: https://github.com/Alamofire/Alamofire.git
 
 //CollectionKit, 源码网址: https://github.com/SoySauceLab/CollectionKit
+
+//XWDragCellCollectionView (使用Objective-C实现的带有抖动效果的Cell重排功能)
+
+
+//AnimatedDropdownMenu(使用Swift实现的导航栏上下拉菜单功能)
+
