@@ -11,6 +11,7 @@
 
 #define angelToRandian(x)  ((x)/180.0*M_PI)
 
+#pragma mark Enum--XWDragCellCollectionViewScrollDirection
 typedef NS_ENUM(NSUInteger, XWDragCellCollectionViewScrollDirection) {
     XWDragCellCollectionViewScrollDirectionNone = 0,
     XWDragCellCollectionViewScrollDirectionLeft,
@@ -20,6 +21,7 @@ typedef NS_ENUM(NSUInteger, XWDragCellCollectionViewScrollDirection) {
 };
 
 @interface XWDragCellCollectionView ()
+
 @property (nonatomic, strong) NSIndexPath *originalIndexPath;
 @property (nonatomic, weak) UICollectionViewCell *orignalCell;
 @property (nonatomic, assign) CGPoint orignalCenter;
@@ -37,6 +39,7 @@ typedef NS_ENUM(NSUInteger, XWDragCellCollectionViewScrollDirection) {
 
 @implementation XWDragCellCollectionView
 
+#warning @dynamic不会生成该属性相关的setter和getter方法, 但是为什么使用点语法进行赋值时不出现崩溃.自己尝试了作者的这种写法, 但是出现了崩溃
 @dynamic delegate;
 @dynamic dataSource;
 
@@ -323,6 +326,7 @@ typedef NS_ENUM(NSUInteger, XWDragCellCollectionViewScrollDirection) {
     
 }
 
+#warning 该方法实现了cell抖动效果的实现, 主要思路就是, 创建一个抖动的关键帧动画, 然后对可见的cell进行遍历,之后将关键帧动画应用到这些cell上.
 - (void)xwp_shakeAllCell{
     if (!_shakeWhenMoveing) {
         //没有开启抖动只需要遍历设置个cell的hidden属性
@@ -348,7 +352,7 @@ typedef NS_ENUM(NSUInteger, XWDragCellCollectionViewScrollDirection) {
         if (![cell.layer animationForKey:@"shake"]) {
             [cell.layer addAnimation:anim forKey:@"shake"];
         }
-        //顺便设置各个cell的hidden属性，由于有cell被hidden，其hidden状态可能被冲用到其他cell上
+        //顺便设置各个cell的hidden属性，由于有cell被hidden，其hidden状态可能被重用到其他cell上
         BOOL hidden = _originalIndexPath && [self indexPathForCell:cell].item == _originalIndexPath.item && [self indexPathForCell:cell].section == _originalIndexPath.section;
         cell.hidden = hidden;
     }
@@ -357,6 +361,7 @@ typedef NS_ENUM(NSUInteger, XWDragCellCollectionViewScrollDirection) {
     }
 }
 
+#warning 移除所有可见cell上的抖动动画
 - (void)xwp_stopShakeAllCell{
     if (!_shakeWhenMoveing || _editing) {
         return;
@@ -367,6 +372,7 @@ typedef NS_ENUM(NSUInteger, XWDragCellCollectionViewScrollDirection) {
     }
     [_tempMoveCell.layer removeAllAnimations];
 }
+
 
 - (void)xwp_setScrollDirection{
     _scrollDirection = XWDragCellCollectionViewScrollDirectionNone;
@@ -445,7 +451,7 @@ typedef NS_ENUM(NSUInteger, XWDragCellCollectionViewScrollDirection) {
 }
 
 #pragma mark - KVO
-
+#warning 对列表是否发生滚动进行监听. 如果不监听列表的滚动的话, 则可能会导下面的cell发生抖动
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context{
     if (![keyPath isEqualToString:@"contentOffset"]) return;
     if (_editing || _isPanning) {

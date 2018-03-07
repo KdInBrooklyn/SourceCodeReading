@@ -18,6 +18,7 @@
 #import <UIKit/UIKit.h>
 @class XWDragCellCollectionView;
 
+#pragma mark XWDragCellCollectionViewDelegate
 @protocol  XWDragCellCollectionViewDelegate<UICollectionViewDelegate>
 
 @required
@@ -57,6 +58,7 @@
 
 @end
 
+#pragma mark XWDragCellCollectionViewDataSource
 @protocol  XWDragCellCollectionViewDataSource<UICollectionViewDataSource>
 
 
@@ -68,12 +70,14 @@
 
 @end
 
+#pragma mark XWDragCellCollectionView
 @interface XWDragCellCollectionView : UICollectionView
 
 @property (nonatomic, assign) id<XWDragCellCollectionViewDelegate> delegate;
 @property (nonatomic, assign) id<XWDragCellCollectionViewDataSource> dataSource;
 
 /**长按多少秒触发拖动手势，默认1秒，如果设置为0，表示手指按下去立刻就触发拖动*/
+#warning 手指按下去就立刻触发的实现原理
 @property (nonatomic, assign) NSTimeInterval minimumPressDuration;
 /**是否开启拖动到边缘滚动CollectionView的功能，默认YES*/
 @property (nonatomic, assign) BOOL edgeScrollEable;
